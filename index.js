@@ -49,6 +49,13 @@ const menuTemplate = [
           createAddWindow();
         }
       },
+      {
+        label: 'Clear Todos',
+        accelerator: isDarwin ? 'Command+D' : 'Ctrl+D',
+        click() {
+          mainWindow.webContents.send('todo:clear');
+        }
+      },
       { 
         label: 'Quit',
         accelerator: isDarwin ? 'Command+Q' : 'Ctrl+Q',
@@ -68,6 +75,9 @@ if (process.env.NODE_ENV !== 'production') {
   menuTemplate.push({
     label: 'Developer',
     submenu: [
+      {
+        role: 'reload'
+      },
       {
         label: 'Toggle Developer Tools',
         accelerator: isDarwin ? 'Command+Alt+I' : 'Ctrl+Shift+I',
